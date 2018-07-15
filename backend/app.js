@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users');
 
 var mongoose = require('mongoose');
 
+require('./models/Product')
+
 var app = express();
 
 mongoose.connect('mongodb://localhost/reserveeronlinedb')
