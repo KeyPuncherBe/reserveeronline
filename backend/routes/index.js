@@ -5,6 +5,7 @@ let productModel = require('../models/Product');
 let purchaseUnitModel = require('../models/PurchaseUnit');
 let orderLineModel = require('../models/OrderLine');
 let orderModel = require('../models/Order');
+let userModel = require('../models/User');
 
 
 let mongoose = require('mongoose');
@@ -12,6 +13,10 @@ let Product = mongoose.model('Product');
 let PurchaseUnit = mongoose.model('PurchaseUnit');
 let Order = mongoose.model('Order');
 let OrderLine = mongoose.model('OrderLine');
+let User = mongoose.model('User');
+
+let jwt = require('express-jwt');
+let auth = jwt({secret: process.env.RO_BACKEND_SECRET});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {

@@ -5,7 +5,7 @@ export enum UnitType {
 }
 
 export class PurchaseUnit {
-    constructor(private _unit: UnitType, private _price: Number, private _alowDecimal: Boolean, private _stackable: Boolean){
+    constructor(private _unit: UnitType, private _price: Number, private _alowDecimal: Boolean, private _stackable: Boolean) {
 
     }
     get unit(): UnitType {return this._unit; }
