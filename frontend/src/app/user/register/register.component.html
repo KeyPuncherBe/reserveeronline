@@ -1,0 +1,13 @@
+<form [formGroup]='user' (ngSubmit)='onSubmit()'>
+  <label for="username">username:</label>
+  <input type="text" id="username" formControlName='username'>
+  <div class='ui pointing red basic label' *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>
+    a user with that name already exists
+  </div>
+  <div formGroupName="passwordGroup">
+    <input type="text" id="password" formControlName='password' #spy>
+    <input type="text" id="confirmPassword" formControlName='confirmPassword'>
+  </div>
+  <button type='submit'>Registreer</button>
+</form>
+REMOVE {{ user.value | json }} {{ user.valid }} {{ spy.className }} {{ user.get("username").errors | json}}

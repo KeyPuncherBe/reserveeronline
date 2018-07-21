@@ -31,7 +31,7 @@ router.get('/API/products/', function (req, res, next) {
   });
 });
 
-router.post('/API/products/', function (req, res, next) {
+router.post('/API/products/', auth, function (req, res, next) {
   PurchaseUnit.create(req.body.purchaseUnit, function (err, pu) {
     if (err) {
       return next(err);

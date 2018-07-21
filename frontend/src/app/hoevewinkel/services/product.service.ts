@@ -11,16 +11,16 @@ export class ProductService {
   private readonly _appUrl = '/API/products';
 
   private _products: BehaviorSubject<Product[]>;
-    
+
   private _dataStore: {
     products: Product[];
-  }
-  constructor(private _http: HttpClient) { 
+  };
+  constructor(private _http: HttpClient) {
     this._dataStore = {products: []};
     this._products = new BehaviorSubject<Product[]>([]);
   }
 
-  get products(): Observable<Product[]>{
+  get products(): Observable<Product[]> {
     return this._products.asObservable();
   }
 
@@ -30,8 +30,8 @@ export class ProductService {
       this._dataStore.products = data;
       this._products.next(Object.assign({}, this._dataStore).products);
     }, error => {
-      console.log("Failed to fetch the products.");
-    })
+      console.log('Failed to fetch the products.');
+    });
   }
 
 

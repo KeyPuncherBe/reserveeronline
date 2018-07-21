@@ -11,7 +11,19 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.post('/checkusername', function(req, res, next) {
+  User.find({username: req.body.username}, 
+    function(err, result) {
+      if (result.length) {
+        res.json({'username': 'alreadyexists'})
+      } else {
+        res.json({'username': 'ok'})
+      }
+  });
+});
+
 router.post('/register', function(req, res, next){
+  console.log('posted: ' + req.body);
   if(!req.body.username || !req.body.password){
       return res.status(400).json(
         {message: 'Please fill out all fields'});

@@ -14,11 +14,11 @@ import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
-  {path: '', component: HoevewinkelAppComponent, 
+  {path: '', component: HoevewinkelAppComponent,
   children : [
     {path: '', component: MainContentComponent}
   ]},
-  {path:'**', redirectTo: ''}
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

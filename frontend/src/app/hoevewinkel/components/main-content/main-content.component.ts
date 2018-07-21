@@ -20,7 +20,7 @@ export class MainContentComponent implements OnInit {
 
     this.products.subscribe( data => {
       console.log(data);
-    })
+    });
   }
 
 }
