@@ -6,9 +6,6 @@ import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthenticationService } from './authentication.service';
-import { AuthGuardService } from './auth-guard.service';
-import { httpInterceptorProviders } from '../http-interceptors';
 
 const routes: Routes = [
     {path: 'register', component: RegisterComponent},

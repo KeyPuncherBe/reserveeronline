@@ -1,17 +1,19 @@
-<mat-card>
-  <mat-card-title>
-    <h4>Login</h4>
-  </mat-card-title>
-  <mat-card-content>
-    <form [formGroup]='user' (ngSubmit)='onSubmit()'>
-      <mat-form-field class="example-full-width">
-        <input matInput type="text" id="username" formControlName='username' placeholder="E-mail">
-      </mat-form-field>
-      <mat-form-field>
-        <input id="password" formControlName='password' matInput placeholder="Passwoord" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
-      <button [disabled]="!user.valid" mat-raised-button color="primary" type='submit'>Login</button>
-    </form>
-  </mat-card-content>
-</mat-card>
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-title>
+      <h4>Login</h4>
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]='user' (ngSubmit)='onSubmit()'>
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" id="username" formControlName='username' placeholder="E-mail">
+        </mat-form-field>
+        <mat-form-field>
+          <input id="password" formControlName='password' matInput placeholder="Passwoord" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <button [disabled]="!user.valid" mat-raised-button color="primary" type='submit'>Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
