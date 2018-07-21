@@ -24,6 +24,14 @@ export class AuthenticationService {
     this._user$ = new BehaviorSubject<string>(parsedToken && parsedToken.username);
   }
 
+  public get token(): string {
+    return this._tokenKey;
+  }
+
+  public get user$(): BehaviorSubject<string> {
+    return this._user$;
+  }
+
   private parseJwt(token) {
     if (!token) {
       return null;
@@ -49,7 +57,6 @@ export class AuthenticationService {
   }
 
   register(username: string, password: string): Observable<boolean> {
-    console.log(password);
     return this.http.post(`/API/users/register`, { username, password }).pipe(
       map((res: any) => {
         const token = res.token;

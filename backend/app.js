@@ -7,8 +7,10 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-let passport = require('passport');
+var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
+
 
 
 require('./models/User');
@@ -19,19 +21,27 @@ require('./models/OrderLine');
 
 require('./config/passport');
 
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/reserveeronlinedb');
+
+let User = mongoose.model('User');
 
 require('./models/Product')
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/reserveeronlinedb');
+
 
 passport.use(new LocalStrategy(
   function (username, password, done) {
+      console.log(username);
+      console.log(password);
       User.findOne({ username: username }, function (err, user) {
+          console.log(err);
+          console.log(user);
           if (err) { return done(err); }
           if (!user) {
+              console.log('no user');
               return done(null, false, { message: 'Incorrect username.' });
           }
           if (!user.validPassword(password)) {

@@ -1,13 +1,23 @@
-<form [formGroup]='user' (ngSubmit)='onSubmit()'>
-  <label for="username">username:</label>
-  <input type="text" id="username" formControlName='username'>
-  <div class='ui pointing red basic label' *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>
-    a user with that name already exists
-  </div>
-  <div formGroupName="passwordGroup">
-    <input type="text" id="password" formControlName='password' #spy>
-    <input type="text" id="confirmPassword" formControlName='confirmPassword'>
-  </div>
-  <button type='submit'>Registreer</button>
-</form>
-REMOVE {{ user.value | json }} {{ user.valid }} {{ spy.className }} {{ user.get("username").errors | json}}
+<mat-card>
+  <mat-card-title>
+    <h4>Registreer</h4>
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]='user' (ngSubmit)='onSubmit()'>
+      <mat-form-field class="example-full-width">
+        <input matInput type="text" id="username" formControlName='username' placeholder="e-mail">
+        <mat-error *ngIf='user.get("username").errors?.userAlreadyExists && user.get("username").touched'>Deze gebruiker bestaat al.</mat-error>
+      </mat-form-field>
+      <div formGroupName="passwordGroup">
+        <mat-form-field>
+          <input id="password" formControlName='password' matInput placeholder="Kies een paswoord" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+          <input id="confirmPassword" formControlName='confirmPassword' matInput placeholder="Bevestig paswoord" type="password">
+        </mat-form-field>
+      </div>
+      <button [disabled]="!user.valid" mat-raised-button color="primary" type='submit'>Registreer</button>
+    </form>
+  </mat-card-content>
+</mat-card>

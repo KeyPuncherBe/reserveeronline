@@ -11,7 +11,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ProductService } from './services/product.service';
-import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from '../http-interceptors';
 
 const routes: Routes = [
   {path: '', component: HoevewinkelAppComponent,
@@ -24,13 +24,13 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
   providers: [
+    httpInterceptorProviders,
     ProductService
   ],
   declarations: [HoevewinkelAppComponent, ToolbarComponent, MainContentComponent, SidenavComponent]

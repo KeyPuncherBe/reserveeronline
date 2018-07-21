@@ -1,27 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
+import { MaterialModule } from '../shared/material.module';
 import { RegisterComponent } from './register/register.component';
 import { Routes, RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { MaterialModule } from '../shared/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
+import { httpInterceptorProviders } from '../http-interceptors';
 
 const routes: Routes = [
-  {path: '', component: RegisterComponent,
-  children : [
-    {path: '/register', component: RegisterComponent},
-    {path: '/login', component: LoginComponent},
-  ]},
-  {path: '**', redirectTo: ''}
-];
+    {path: 'register', component: RegisterComponent},
+    {path: 'login', component: LoginComponent},
+    {path: '', redirectTo: 'login', pathMatch: 'full'}
+  ];
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
@@ -29,8 +26,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [LoginComponent, RegisterComponent],
-  providers: [
-    AuthenticationService
-  ]
+  providers: []
 })
 export class UserModule { }
