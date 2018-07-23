@@ -17,6 +17,7 @@ let User = mongoose.model('User');
 
 let jwt = require('express-jwt');
 let auth = jwt({secret: process.env.RO_BACKEND_SECRET});
+let passport = require('passport');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -31,7 +32,8 @@ router.get('/API/products/', function (req, res, next) {
   });
 });
 
-router.post('/API/products/', auth, function (req, res, next) {
+
+router.post('/API/products/', passport.authenticate('jwt', { session: false }), function (req, res, next) {
   PurchaseUnit.create(req.body.purchaseUnit, function (err, pu) {
     if (err) {
       return next(err);

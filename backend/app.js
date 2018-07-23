@@ -3,11 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var passport = require('passport');
+
 var LocalStrategy = require('passport-local').Strategy;
 
 
@@ -32,24 +33,25 @@ var app = express();
 
 
 
-passport.use(new LocalStrategy(
-  function (username, password, done) {
-      console.log(username);
-      console.log(password);
-      User.findOne({ username: username }, function (err, user) {
-          console.log(err);
-          console.log(user);
-          if (err) { return done(err); }
-          if (!user) {
-              console.log('no user');
-              return done(null, false, { message: 'Incorrect username.' });
-          }
-          if (!user.validPassword(password)) {
-              return done(null, false, { message: 'Incorrect password.' });
-          }
-          return done(null, user);
-      });
-  }));
+// passport.use(new LocalStrategy(
+//   function (username, password, done) {
+//       console.log('user local strategy');
+//       User.findOne({ username: username }, function (err, user) {
+//           console.log(err);
+//           console.log(user);
+//           if (err) { return done(err); }
+//           if (!user) {
+//               console.log('no user');
+//               return done(null, false, { message: 'Incorrect username.' });
+//           }
+//           if (!user.validPassword(password)) {
+//               return done(null, false, { message: 'Incorrect password.' });
+//           }
+//           console.log('inside local strategy');
+//           console.log(user);
+//           return done(null, user);
+//       });
+//   }));
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -49,7 +49,7 @@ router.post('/login', function(req, res, next){
       return res.status(400).json(
         {message: 'Please fill out all fields'});
   }
-  passport.authenticate('local', function(err, user, info){
+  passport.authenticate('local', {session: false}, function(err, user, info){
     if(err){ return next(err); }
     if(user){
       return res.json({token: user.generateJWT()});
