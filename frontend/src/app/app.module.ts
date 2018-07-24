@@ -9,14 +9,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthGuardService } from './user/auth-guard.service';
 import { AuthenticationService } from './user/authentication.service';
+import { RoleGuardService } from './user/role-guard.service';
 
 
 
 
 const routes: Routes = [
   {path: 'hoevewinkel',
-  canActivate: [ AuthGuardService ],
-  loadChildren: './hoevewinkel/hoevewinkel.module#HoevewinkelModule'},
+  canActivate: [ AuthGuardService ], loadChildren: './hoevewinkel/hoevewinkel.module#HoevewinkelModule'},
+  {path: 'admin', canActivate: [AuthGuardService, RoleGuardService],
+  data: {expectedRole: 'admin'},
+  loadChildren: './admin/admin.module#AdminModule'},
   {path: 'users', loadChildren: './user/user.module#UserModule'},
   {path: 'demo', loadChildren: './demo/demo.module#DemoModule'},
   {path: 'login', redirectTo: 'users', pathMatch: 'full'},
@@ -33,9 +36,9 @@ const routes: Routes = [
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes, {enableTracing: true})
+    RouterModule.forRoot(routes)
   ],
-  providers: [HttpClientModule, AuthGuardService, AuthenticationService],
+  providers: [HttpClientModule, AuthGuardService, RoleGuardService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

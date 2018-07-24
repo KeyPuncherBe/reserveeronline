@@ -34,25 +34,30 @@ router.get('/API/products/', function (req, res, next) {
 
 
 router.post('/API/products/', passport.authenticate('jwt', { session: false }), function (req, res, next) {
-  PurchaseUnit.create(req.body.purchaseUnit, function (err, pu) {
-    if (err) {
-      return next(err);
-    }
-    let product = new Product({
-      name: req.body.name,
-      description: req.body.description,
-      created: req.body.created
-    });
-    product.purchaseUnit = pu;
-    product.save(function (err, prod) {
+  if(req.user && req.user.role && req.user.role !== 'admin') {
+    console.log('user is user')
+    res.status(401);
+    res.send();
+  } else {
+    PurchaseUnit.create(req.body.purchaseUnit, function (err, pu) {
       if (err) {
-        PurchaseUnit.remove({ _id: { $in: product.purchaseUnit } });
         return next(err);
       }
-      res.json(prod);
+      let product = new Product({
+        name: req.body.name,
+        description: req.body.description,
+        created: req.body.created
+      });
+      product.purchaseUnit = pu;
+      product.save(function (err, prod) {
+        if (err) {
+          PurchaseUnit.remove({ _id: { $in: product.purchaseUnit } });
+          return next(err);
+        }
+        res.json(prod);
+      });
     });
-  });
-
+  }
 });
 
 router.get('/API/orders/', function(req, res, next) {

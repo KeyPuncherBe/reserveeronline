@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
   private readonly _tokenKey = 'currentUser';
   private _user$: BehaviorSubject<string>;
+  private _userRole$: BehaviorSubject<string>;
 
   redirectUrl: string;
 
@@ -22,6 +23,7 @@ export class AuthenticationService {
       }
     }
     this._user$ = new BehaviorSubject<string>(parsedToken && parsedToken.username);
+    this._userRole$ = new BehaviorSubject<string>(parsedToken && parsedToken.role);
   }
 
   public get token(): string {
@@ -30,6 +32,10 @@ export class AuthenticationService {
 
   public get user$(): BehaviorSubject<string> {
     return this._user$;
+  }
+
+  public get userRole$(): BehaviorSubject<string> {
+    return this._userRole$;
   }
 
   private parseJwt(token) {
@@ -48,6 +54,7 @@ export class AuthenticationService {
         if (token) {
           localStorage.setItem(this._tokenKey, token);
           this._user$.next(username);
+          this._userRole$.next(this.parseJwt(token).role);
           return true;
         } else {
           return false;
