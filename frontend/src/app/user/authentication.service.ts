@@ -27,7 +27,7 @@ export class AuthenticationService {
   }
 
   public get token(): string {
-    return this._tokenKey;
+    return localStorage.getItem(this._tokenKey);
   }
 
   public get user$(): BehaviorSubject<string> {

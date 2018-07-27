@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { Routes, RouterModule } from '@angular/router';
+import { httpInterceptorProviders } from './http-interceptors/index';
 
 import { AppComponent } from './app.component';
 import { AuthGuardService } from './user/auth-guard.service';
@@ -38,7 +39,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [HttpClientModule, AuthGuardService, RoleGuardService, AuthenticationService],
+  providers: [HttpClientModule, AuthGuardService, RoleGuardService, AuthenticationService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

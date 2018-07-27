@@ -3,7 +3,10 @@ var mongoose = require('mongoose');
 var ProductSchema = new mongoose.Schema({
     name: String,
     description: String,
-    purchaseUnit: {type: mongoose.Schema.Types.ObjectId, ref: 'PurchaseUnit'},
+    purchaseUnit: String,
+    price: Number,
+    allowDecimal: Boolean,
+    stackable: Boolean,
     created: Date
 });
 

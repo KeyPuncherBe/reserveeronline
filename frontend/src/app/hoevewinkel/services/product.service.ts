@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { PurchaseUnit } from '../models/purchase-unit';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ProductService {
@@ -22,6 +23,20 @@ export class ProductService {
 
   get products(): Observable<Product[]> {
     return this._products.asObservable();
+  }
+
+  addProduct(product: Product): Observable<Product> {
+    return this._http.post(`/API/products`, product).pipe(
+      map((res: Product) => {
+        console.log('inside map');
+        console.log(res);
+        if (res._id) {
+          this._dataStore.products.push(res);
+          this._products.next(Object.assign({}, this._dataStore).products);
+          return res;
+        }
+      })
+    );
   }
 
   loadAll() {

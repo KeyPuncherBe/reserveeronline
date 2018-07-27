@@ -1,0 +1,30 @@
+<div class="add-product-container">
+  <mat-card class="add-product-card">
+    <mat-card-title>
+      <h4>Nieuw product</h4>
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]='product' (ngSubmit)='onSubmit()'>
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" id="name" formControlName='name' placeholder="Productnaam">
+          <mat-error *ngIf='product.get("name").errors?.required && product.get("name").touched'>Een product dient een naam te hebben.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matTextareaAutosize matAutosizeMinRows="1" matInput id="description" formControlName='description' placeholder="Omschrijving"></textarea>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" id="purchaseUnit" formControlName='purchaseUnit' placeholder="Afname eenheid">
+          <mat-error *ngIf='product.get("purchaseUnit").errors?.required && product.get("purchaseUnit").touched'>Gelieve in te geven wat de verkochte eenheid is. Vb: 'stuk' of 'liter'</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Eenheidsprijs" formControlName="price" type="number" class="example-right-align">
+          <span matPrefix>€&nbsp;</span>
+          <mat-error *ngIf='product.get("price").errors?.required && product.get("price").touched'>Gelieve een prijs in te voeren.</mat-error>
+        </mat-form-field>
+        <mat-checkbox class="example-full-width" id="allowDecimal" formControlName="allowDecimal">Laat kommagetal toe als aankoop hoeveelheid.</mat-checkbox>
+        <mat-checkbox class="example-full-width" id="stackable" formControlName="stackable">Voeg bestellijnen van dit product in de winkelwagen automatisch samen.</mat-checkbox>
+        <button [disabled]="!product.valid" mat-raised-button color="primary" type='submit'>Registreer</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

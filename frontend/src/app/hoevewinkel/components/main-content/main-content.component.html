@@ -1,3 +1,23 @@
-<mat-card>
-  <h1>Main content</h1>
+<mat-card class="product-container">
+  <mat-card *ngFor="let product of products | async">
+    <mat-card-title>
+      <h4>{{product.name}}</h4>
+    </mat-card-title>
+    <mat-card-content>
+      {{product.description}}
+      <br> Eenheid: {{product.purchaseUnit}}
+      <br> Prijs: {{product.price}}
+    </mat-card-content>
+    <mat-card-actions>
+      <mat-form-field [style.visibility]="winkelwagen.has(product) ? 'visible' : 'hidden'" class="example-form-field">
+        <input  matInput type="number" min="0" placeholder="Aantal" [(ngModel)]="winkelwagen.get(product)" />
+        <button  mat-button matPrefix mat-icon-button aria-label="Subtract">
+            <mat-icon style="font-size: x-large">remove_circle_outline</mat-icon>
+          </button>
+        <button [style.visibility]="'visible'" mat-button matSuffix mat-icon-button aria-label="Add" (click)="addProduct(product)">
+          <mat-icon style="font-size: x-large">add_circle_outline</mat-icon>
+        </button>
+      </mat-form-field>
+    </mat-card-actions>
+  </mat-card>
 </mat-card>

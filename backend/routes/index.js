@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/API/products/', function (req, res, next) {
-  let query = Product.find().populate('purchaseUnit')
+  let query = Product.find()
   query.exec(function (err, products) {
     if (err) { return next(err); }
     res.json(products);
@@ -34,28 +34,30 @@ router.get('/API/products/', function (req, res, next) {
 
 
 router.post('/API/products/', passport.authenticate('jwt', { session: false }), function (req, res, next) {
+  console.log('Inside post request. Req.user:');
+  console.log(req.user);
   if(req.user && req.user.role && req.user.role !== 'admin') {
     console.log('user is user')
     res.status(401);
     res.send();
   } else {
-    PurchaseUnit.create(req.body.purchaseUnit, function (err, pu) {
+    console.log('trying to create product');
+    let product = new Product({
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      purchaseUnit: req.body.purchaseUnit,
+      stackable: req.body.stackable,
+      allowDecimal: req.body.allowDecimal,
+      created: req.body.created
+    });
+
+    product.save(function (err, prod) {
       if (err) {
+        PurchaseUnit.remove({ _id: { $in: product.purchaseUnit } });
         return next(err);
       }
-      let product = new Product({
-        name: req.body.name,
-        description: req.body.description,
-        created: req.body.created
-      });
-      product.purchaseUnit = pu;
-      product.save(function (err, prod) {
-        if (err) {
-          PurchaseUnit.remove({ _id: { $in: product.purchaseUnit } });
-          return next(err);
-        }
-        res.json(prod);
-      });
+      res.json(prod);
     });
   }
 });

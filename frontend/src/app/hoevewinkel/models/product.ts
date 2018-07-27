@@ -1,9 +1,10 @@
-import { PurchaseUnit } from "./purchase-unit";
-
 export class Product {
-    id: number;
+    _id?: number;
     name: string;
+    purchaseUnit: string;
+    price: number;
+    allowDecimal: boolean;
+    stackable: boolean;
     image?: any;
     description: string;
-    purchaseUnits: PurchaseUnit[] = [];
 }
