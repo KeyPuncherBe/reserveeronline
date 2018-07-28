@@ -11,8 +11,6 @@ export class ShoppingCart {
             return;
         } else {
             this.comment = shoppingCart.comment;
-            console.log('loging this');
-            console.log(this);
             this.items = new Map();
             if (shoppingCart.items) {
                 shoppingCart.items.forEach( item => {

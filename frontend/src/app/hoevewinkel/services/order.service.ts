@@ -36,15 +36,7 @@ export class OrderService {
   decreaseProduct(product: Product) {
     const newShoppingCart = this.cloneShoppingCart();
     const toPost: IShoppingCart = newShoppingCart.decreaseProduct(product);
-    this.postShoppingCart(toPost).pipe(
-      map((res: IShoppingCart) => {
-        console.log(res);
-        if (res) {
-          this._dataStore.shoppingCart = new ShoppingCart(res);
-          this._shoppingCart.next(this.cloneShoppingCart());
-        }
-      })
-    );
+    return this.postShoppingCart(toPost);
   }
 
   private postShoppingCart(shoppingCart: IShoppingCart) {
@@ -63,7 +55,10 @@ export class OrderService {
 
   modifyShoppingCart(product: Product, amount: number) {
     const newShoppingCart: ShoppingCart = this.cloneShoppingCart();
-    newShoppingCart.modify(product, amount);
+    const toPost = newShoppingCart.modify(product, amount);
+    console.log('modifying');
+    console.log(toPost);
+    return this.postShoppingCart(toPost);
   }
 
   private cloneShoppingCart(): ShoppingCart {
@@ -72,10 +67,12 @@ export class OrderService {
 
   loadAll() {
     return this._http.get<IShoppingCart>(`${this._appUrl}/shoppingCart`).subscribe(data => {
+      console.log('loading shopping card');
       this._dataStore.shoppingCart = new ShoppingCart(data);
+      console.log('value of shoppingcard in service: ');
+      console.log(this._dataStore.shoppingCart);
       this._shoppingCart.next(Object.assign({}, this._dataStore).shoppingCart);
     }, error => {
-      console.log('Failed to fetch the shopping cart.');
       console.log(error);
     });
   }

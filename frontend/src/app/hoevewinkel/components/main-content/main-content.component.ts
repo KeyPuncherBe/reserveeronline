@@ -16,6 +16,7 @@ export class MainContentComponent implements OnInit {
   private _shoppingCart: Observable<ShoppingCart>;
   products: Observable<Product[]>;
   shoppingCart: ShoppingCart;
+  itemSize: number;
 
   constructor(private _productService: ProductService, private _orderService: OrderService) { }
 
@@ -25,12 +26,21 @@ export class MainContentComponent implements OnInit {
     this._productService.loadAll();
     this._orderService.loadAll();
 
-    this.products.subscribe( data => {
-      console.log(data);
-    });
+    this.shoppingCart = new ShoppingCart();
+    this.shoppingCart.comment = 'test';
 
     this._shoppingCart.subscribe( data => {
+      console.log('subscribing to shoppingcart: ');
+      // this.shoppingCart = data;
+      this.shoppingCart.comment = 'na update';
+      console.log(data.items);
       this.shoppingCart = data;
+      console.log(data);
+      console.log(this.shoppingCart);
+    });
+
+    this.products.subscribe( data => {
+      console.log(data);
     });
   }
 
@@ -38,10 +48,12 @@ export class MainContentComponent implements OnInit {
     this._orderService.increaseProduct(product).subscribe();
   }
 
+  decreaseProduct (product: Product) {
+    this._orderService.decreaseProduct(product).subscribe();
+  }
+
   setProductsInCart(product: Product, aantal: any) {
-    console.log(product);
-    console.log(aantal);
-    console.log(isNumeric(aantal));
+   this._orderService.modifyShoppingCart(product, aantal).subscribe();
   }
 
 }
