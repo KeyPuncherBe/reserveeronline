@@ -14,7 +14,7 @@ export class ProductService {
   private _products: BehaviorSubject<Product[]>;
 
   private _dataStore: {
-    products: Product[];
+    products: Product[]
   };
   constructor(private _http: HttpClient) {
     this._dataStore = {products: []};

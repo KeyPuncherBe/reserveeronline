@@ -2,11 +2,22 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
+var ShoppingCartSchema = new mongoose.Schema({
+  items: [new mongoose.Schema(
+      {
+          product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
+          amount: Number
+      })],
+  comment: String,
+  created: Date
+});
+
 
 let UserSchema = new mongoose.Schema({
 	username: { type: String, lowercase: true, 
     unique: true },
   role: {type: String, enum: ['user', 'admin'], default: 'user', required: true},
+  shoppingCart: {type: ShoppingCartSchema, default: ShoppingCartSchema},
 	hash: String,
   salt: String,
   permission: {type: String, required: true, default: 'user'}

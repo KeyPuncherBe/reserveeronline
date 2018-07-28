@@ -6,6 +6,7 @@ let purchaseUnitModel = require('../models/PurchaseUnit');
 let orderLineModel = require('../models/OrderLine');
 let orderModel = require('../models/Order');
 let userModel = require('../models/User');
+// let shoppingCartModel = require('../models/ShoppingCart');
 
 
 let mongoose = require('mongoose');
@@ -14,6 +15,7 @@ let PurchaseUnit = mongoose.model('PurchaseUnit');
 let Order = mongoose.model('Order');
 let OrderLine = mongoose.model('OrderLine');
 let User = mongoose.model('User');
+// let ShoppingCart = mongoose.model('ShoppingCart');
 
 let jwt = require('express-jwt');
 let auth = jwt({secret: process.env.RO_BACKEND_SECRET});
@@ -68,6 +70,35 @@ router.get('/API/orders/', function(req, res, next) {
     if (err) { return next(err); }
     res.json(orders);
   });
+});
+
+router.get('/API/shoppingCart/', passport.authenticate('jwt', { session: false }), async function (req, res, next) {
+  console.log('inside get');
+  if(req.user.shoppingCart){
+    console.log(req.user.shoppingCart);
+    res.json(req.user.shoppingCart);
+  }
+  else {
+    
+  }
+  
+  
+});
+
+router.post('/API/shoppingCart/', passport.authenticate('jwt', { session: false }), async function (req, res, next) {
+  console.log('inside post');
+  console.log(req.body);
+  req.user.shoppingCart = req.body;
+  console.log(req.user.shoppingCart);
+  req.user.save(function (err, user) {
+    if(err) {
+      console.log('error saving shopping cart');
+      return next(err);
+    }
+    console.log('cart:');
+    console.log(user.shoppingCart)
+    res.json(user.shoppingCart);
+  })
 });
 
 

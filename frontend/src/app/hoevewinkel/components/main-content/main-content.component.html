@@ -9,12 +9,12 @@
       <br> Prijs: {{product.price}}
     </mat-card-content>
     <mat-card-actions>
-      <mat-form-field [style.visibility]="winkelwagen.has(product) ? 'visible' : 'hidden'" class="example-form-field">
-        <input  matInput type="number" min="0" placeholder="Aantal" [(ngModel)]="winkelwagen.get(product)" />
+      <mat-form-field [style.visibility]="shoppingCart?.items?.has(product_id) ? 'visible' : 'hidden'" class="example-form-field">
+        <input #aantal matInput type="number" value="shoppingCart.items?.has(product._id) ? shoppingCart.items.get(product_id) : 0" min="0" placeholder="Aantal" (keyup)="setProductsInCart(product, aantal.value)" />
         <button  mat-button matPrefix mat-icon-button aria-label="Subtract">
             <mat-icon style="font-size: x-large">remove_circle_outline</mat-icon>
           </button>
-        <button [style.visibility]="'visible'" mat-button matSuffix mat-icon-button aria-label="Add" (click)="addProduct(product)">
+        <button [style.visibility]="'visible'" mat-button matSuffix mat-icon-button aria-label="Add" (click)="increaseProduct(product)">
           <mat-icon style="font-size: x-large">add_circle_outline</mat-icon>
         </button>
       </mat-form-field>
