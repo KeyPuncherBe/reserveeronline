@@ -8,7 +8,6 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ProductService {
-
   private readonly _appUrl = '/API/products';
 
   private _products: BehaviorSubject<Product[]>;
@@ -47,6 +46,10 @@ export class ProductService {
     }, error => {
       console.log('Failed to fetch the products.');
     });
+  }
+
+  getProductFromId(id: string): Product {
+    return this._dataStore.products.filter( product => product._id === id)[0];
   }
 
 

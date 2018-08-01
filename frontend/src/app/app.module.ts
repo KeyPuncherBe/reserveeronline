@@ -11,9 +11,6 @@ import { AppComponent } from './app.component';
 import { AuthGuardService } from './user/auth-guard.service';
 import { AuthenticationService } from './user/authentication.service';
 import { RoleGuardService } from './user/role-guard.service';
-import { ShoppingCartSidenavComponent } from './hoevwinkel/components/shopping-cart-sidenav/shopping-cart-sidenav.component';
-
-
 
 
 const routes: Routes = [
@@ -31,9 +28,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ShoppingCartSidenavComponent
-  ],
+    AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HoevewinkelAppComponent } from './hoevewinkel-app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
+import { ShoppingCartSidenavComponent } from './components/shopping-cart-sidenav/shopping-cart-sidenav.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ProductService } from './services/product.service';
 import { httpInterceptorProviders } from '../http-interceptors';
@@ -17,12 +18,14 @@ import { RoleGuardService } from '../user/role-guard.service';
 import { OrderService } from './services/order.service';
 
 const routes: Routes = [
-  {path: '', component: HoevewinkelAppComponent,
-  children : [
-    {path: '', component: MainContentComponent}
-  ]},
-  {path: 'add-product', canActivate: [RoleGuardService], data: {expectedRole: 'admin'}, component: AddProductComponent},
-  {path: '**', redirectTo: ''}
+  {
+    path: '', component: HoevewinkelAppComponent,
+    children: [
+      { path: '', component: MainContentComponent }
+    ]
+  },
+  { path: 'add-product', canActivate: [RoleGuardService], data: { expectedRole: 'admin' }, component: AddProductComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
@@ -38,6 +41,11 @@ const routes: Routes = [
     ProductService,
     OrderService
   ],
-  declarations: [HoevewinkelAppComponent, ToolbarComponent, MainContentComponent, SidenavComponent, AddProductComponent]
+  declarations: [HoevewinkelAppComponent,
+    ToolbarComponent,
+    MainContentComponent,
+    SidenavComponent,
+    AddProductComponent,
+    ShoppingCartSidenavComponent]
 })
 export class HoevewinkelModule { }

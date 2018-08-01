@@ -4,11 +4,7 @@
       <mat-toolbar color="primary">
         Winkelwagen
       </mat-toolbar>
-      <mat-list role="list">
-        <mat-list-item role="listitem">Item 1</mat-list-item>
-        <mat-list-item role="listitem">Item 2</mat-list-item>
-        <mat-list-item role="listitem">Item 3</mat-list-item>
-      </mat-list>
+      <app-shopping-cart-sidenav></app-shopping-cart-sidenav>
     </mat-sidenav>
     <mat-sidenav-content class="app-sidenav-content">
         <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../../hoevewinkel/services/order.service';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCart } from '../../../hoevewinkel/models/shopping-cart';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-shopping-cart-sidenav',
@@ -12,12 +14,16 @@ export class ShoppingCartSidenavComponent implements OnInit {
 
   shoppingCart: Observable<ShoppingCart>;
 
-  constructor(private _orderService: OrderService) { }
+  constructor(private _orderService: OrderService, private _productService: ProductService) { }
 
   ngOnInit() {
     this.shoppingCart = this._orderService.shoppingCart;
     this._orderService.loadAll();
     this.shoppingCart.subscribe( data => console.log(data));
+  }
+
+  getFullProduct(product_id: string): Product {
+    return this._productService.getProductFromId(product_id);
   }
 
 }

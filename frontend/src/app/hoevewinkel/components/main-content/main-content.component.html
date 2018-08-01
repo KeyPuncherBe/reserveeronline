@@ -7,7 +7,6 @@
       {{product.description}}
       <br> Eenheid: {{product.purchaseUnit}}
       <br> Prijs: {{product.price}}
-      <br> {{shoppingCart.items.has(product._id)}}
     </mat-card-content>
     <mat-card-actions>
       <mat-form-field [style.visibility]="shoppingCart.items.has(product._id) ? 'visible' : 'hidden'" class="example-form-field">
