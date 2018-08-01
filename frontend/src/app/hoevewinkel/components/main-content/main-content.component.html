@@ -1,8 +1,10 @@
 <mat-card class="product-container">
   <mat-card *ngFor="let product of products | async">
-    <mat-card-title>
-      <h4>{{product.name}}</h4>
-    </mat-card-title>
+    <mat-card-header>
+        <mat-card-title>
+            <h3>{{product.name}}</h3>
+          </mat-card-title>
+    </mat-card-header>
     <mat-card-content>
       {{product.description}}
       <br> Eenheid: {{product.purchaseUnit}}
