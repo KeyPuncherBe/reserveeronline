@@ -9,7 +9,7 @@
         "build-frontend": "cd frontend && ng build --prod",
         "commit-build-changes": "git add . && git commit -m 'chore(build):_build_files'",
         "deploy-frontend": "npm run build-frontend && npm run copy && npm run commit-build-changes && git subtree push --prefix serve-frontend hoevewinkel-frontend master",
-        "copy": "cpx 'frontend/dist/**' serve-frontend/www"
+        "copy": "cpx 'frontend/dist/**' ./serve-frontend/www"
     },
     "author": {
         "name": "Laurens Mertens",
