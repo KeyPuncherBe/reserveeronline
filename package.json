@@ -7,7 +7,7 @@
         "start": "node server",
         "deploy-backend": "git subtree push --prefix backend hoevewinkel-backend master",
         "build-frontend": "cd frontend && ng build --prod",
-        "commit-build-changes": "git add . && git commit -m 'chore(build): build files'",
+        "commit-build-changes": "git add . && git commit -m 'chore(build):_build_files'",
         "deploy-frontend": "npm run build-frontend && npm run copy && npm run commit-build-changes && git subtree push --prefix serve-frontend hoevewinkel-frontend master",
         "copy": "cpx 'frontend/dist/**' serve-frontend/www"
     },
