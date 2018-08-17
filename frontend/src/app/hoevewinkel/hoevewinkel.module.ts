@@ -12,7 +12,7 @@ import { MainContentComponent } from './components/main-content/main-content.com
 import { ShoppingCartSidenavComponent } from './components/shopping-cart-sidenav/shopping-cart-sidenav.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ProductService } from './services/product.service';
-import { httpInterceptorProviders } from '../http-interceptors';
+import { httpInterceptorProviders, basehttpInterceptorProviders } from '../http-interceptors';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { RoleGuardService } from '../user/role-guard.service';
 import { OrderService } from './services/order.service';
@@ -37,6 +37,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers: [
+    basehttpInterceptorProviders,
     httpInterceptorProviders,
     ProductService,
     OrderService

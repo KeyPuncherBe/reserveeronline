@@ -31,6 +31,9 @@ require('./models/Product')
 
 var app = express();
 
+let cors = require('cors');
+app.use(cors({origin: "*"}));
+
 
 
 // passport.use(new LocalStrategy(
