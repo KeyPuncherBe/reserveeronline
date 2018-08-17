@@ -36,7 +36,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [HttpClientModule, AuthGuardService, RoleGuardService, AuthenticationService, 
+  providers: [HttpClientModule, AuthGuardService, RoleGuardService, AuthenticationService,
     basehttpInterceptorProviders, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
