@@ -22,20 +22,25 @@
 
 @media all and (min-width: 900px){
     .product-container {
-        width: 90%;
-        max-width: 1000px;
+        // align-content: flex-start;
+        // width: 90%;
+        max-width: 60rem;
         margin: 1rem auto;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: flex-start;
+        // display: inline-flex;
+        // flex-flow: row wrap;
+        // justify-content: flex-start;
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(20rem, 1fr));
     
         mat-card {
                 // box-sizing: border-box;
                 // display: inline-block;
                 // width: 15rem;
-            flex-grow: 1;
-            max-width: 350px;
-            margin: 5px 0.5%;
+            // flex-basis: 18rem;
+            // flex-grow: 0;
+            // flex-shrink: 0;
+            // max-width: 350px;
+            // margin: 5px 0.5%;
             mat-form-field {
                 width: 100%;
             }

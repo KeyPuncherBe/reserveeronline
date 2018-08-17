@@ -1,0 +1,35 @@
+{
+    "name": "hoevewinkelapp",
+    "version": "1.0.0",
+    "description": "Hoevewinkel demo app",
+    "homepage": "https://github.com/KeyPuncherBe",
+    "scripts": {
+        "start": "node server",
+        "deploy-backend": "git subtree push --prefix backend hoevewinkel-backend master",
+        "build-frontend": "cd frontend && ng build --prod",
+        "commit-build-changes": "git add . && git commit -m 'chore(build): build files'",
+        "deploy-frontend": "npm run build-frontend && npm run copy && npmrun commit-build-changes && git subtree push --prefix serve-frontend hoevewinkel-frontend master",
+        "copy": "cpx 'frontend/dist/**' serve-frontend/www"
+    },
+    "author": {
+        "name": "Laurens Mertens",
+        "email": "laurens.mertens.s7430@student.hogent.be",
+        "web": "https://github.com/KeyPuncherBe"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/KeyPuncherBe/reserveeronline"
+    },
+    "engines": {
+        "node": ">=6.0.0"
+    },
+    "dependencies": {
+        "connect": "^3.6.5",
+        "serve-static": "^1.13.1"
+    },
+    "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
+    "devDependencies": {
+        "copyfiles": "^2.0.0",
+        "cpx": "^1.5.0"
+    }
+}

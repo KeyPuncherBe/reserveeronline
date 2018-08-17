@@ -26,4 +26,9 @@ export class ShoppingCartSidenavComponent implements OnInit {
     return this._productService.getProductFromId(product_id);
   }
 
+  removeProduct(product_id: string) {
+    const product: Product = this._productService.getProductFromId(product_id);
+    this._orderService.modifyShoppingCart(product, 0).subscribe();
+  }
+
 }

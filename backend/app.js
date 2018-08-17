@@ -23,7 +23,7 @@ require('./models/OrderLine');
 require('./config/passport');
 
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/reserveeronlinedb');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reserveeronlinedb');
 
 let User = mongoose.model('User');
 

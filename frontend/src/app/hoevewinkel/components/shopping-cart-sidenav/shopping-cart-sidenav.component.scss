@@ -1,0 +1,19 @@
+.item-container {
+    display: flex;
+    flex-flow: row nowrap;
+
+    .entry {
+        flex: 1 80%;
+        display: inline-block;
+    }
+
+    button {
+        flex: 0 auto;
+        color: gray;
+        :hover {
+            color: black;
+        }
+    }
+
+
+}
