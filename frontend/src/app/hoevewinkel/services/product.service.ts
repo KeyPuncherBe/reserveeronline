@@ -24,6 +24,17 @@ export class ProductService {
     return this._products.asObservable();
   }
 
+  getProductObservableFromId(id: string): Observable<Product> {
+    return this._http.get(`/API/products/${id}`).pipe(
+      map((res: Product) => {
+        console.log(res);
+        if (res._id) {
+          return res;
+        }
+      })
+    );
+  }
+
   addProduct(product: Product): Observable<Product> {
     return this._http.post(`/API/products`, product).pipe(
       map((res: Product) => {

@@ -2,6 +2,6 @@
     <button class="sidenav-toggle" mat-button (click)="toggleSidenav.emit()">
         <mat-icon>shopping_cart</mat-icon>
       </button>
-  <span>Hoevewinkel</span>
-  <a href="#" [routerLink]="['/hoevewinkel/add-product']" mat-button>Nieuw product</a>
+  <span><a [routerLink]="['/hoevewinkel']">Hoevewinkel</a></span>
+  <a *ngIf="isAdmin()" href="#" [routerLink]="['/hoevewinkel/add-product']" mat-button>Nieuw product</a>
 </mat-toolbar>

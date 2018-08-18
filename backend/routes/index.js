@@ -34,6 +34,14 @@ router.get('/API/products/', function (req, res, next) {
   });
 });
 
+router.get('/API/products/:id', function (req, res, next) {
+  let query = Product.findById(req.params.id)
+  query.exec(function (err, products) {
+    if (err) { return next(err); }
+    res.json(products);
+  });
+});
+
 
 router.post('/API/products/', passport.authenticate('jwt', { session: false }), function (req, res, next) {
   console.log('Inside post request. Req.user:');

@@ -44,7 +44,7 @@ export class AddProductComponent implements OnInit {
         console.log(val);
           if (val) {
             console.log('going to navigate');
-            this.router.navigate(['/hoevewinkel']);
+            this.router.navigate(['/hoevewinkel/product', val._id]);
           }
         }, err => {
         this.errorMsg = err.message;

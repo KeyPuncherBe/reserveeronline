@@ -1,3 +1,15 @@
-<p>
-  product-detail works!
-</p>
+<div class="product-container">
+  <mat-card *ngIf="product | async; let product" class="product-card">
+    <mat-card-title>
+      <h4>{{product?.name}}</h4>
+    </mat-card-title>
+    <mat-card-content>
+      <h5>Afname eenheid: </h5>
+      <p>{{product.purchaseUnit}}</p>
+      <h5>Eenheidsprijs</h5>
+      <p>{{product.price}}</p>
+      <h5>Omschrijving</h5>
+      <p>{{product.description}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

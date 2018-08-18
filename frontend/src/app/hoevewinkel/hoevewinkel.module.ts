@@ -23,7 +23,8 @@ const routes: Routes = [
     path: '', component: HoevewinkelAppComponent,
     children: [
       { path: '', component: MainContentComponent },
-      { path: 'add-product', canActivate: [RoleGuardService], data: { expectedRole: 'admin' }, component: AddProductComponent }
+      { path: 'add-product', canActivate: [RoleGuardService], data: { expectedRole: 'admin' }, component: AddProductComponent },
+      { path: 'product/:id', component: ProductDetailComponent }
     ]
   },
   { path: '**', redirectTo: '' }
