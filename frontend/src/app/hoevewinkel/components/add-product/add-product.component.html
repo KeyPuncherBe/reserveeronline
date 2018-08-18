@@ -21,9 +21,9 @@
           <span matPrefix>€&nbsp;</span>
           <mat-error *ngIf='product.get("price").errors?.required && product.get("price").touched'>Gelieve een prijs in te voeren.</mat-error>
         </mat-form-field>
-        <mat-checkbox class="example-full-width" id="allowDecimal" formControlName="allowDecimal">Laat kommagetal toe als aankoop hoeveelheid.</mat-checkbox>
-        <mat-checkbox class="example-full-width" id="stackable" formControlName="stackable">Voeg bestellijnen van dit product in de winkelwagen automatisch samen.</mat-checkbox>
-        <button [disabled]="!product.valid" mat-raised-button color="primary" type='submit'>Registreer</button>
+        <mat-checkbox class="example-full-width" id="allowDecimal" formControlName="allowDecimal">Laat kommagetal toe als aankoop hoeveelheid.</mat-checkbox><br>
+        <mat-checkbox class="example-full-width" id="stackable" formControlName="stackable">Voeg bestellijnen van dit product in de winkelwagen automatisch samen.</mat-checkbox><br>
+        <button [disabled]="!product.valid" mat-raised-button color="primary" type='submit'>Voeg toe</button>
       </form>
     </mat-card-content>
   </mat-card>

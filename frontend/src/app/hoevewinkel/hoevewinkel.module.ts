@@ -16,15 +16,16 @@ import { httpInterceptorProviders, basehttpInterceptorProviders } from '../http-
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { RoleGuardService } from '../user/role-guard.service';
 import { OrderService } from './services/order.service';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
     path: '', component: HoevewinkelAppComponent,
     children: [
-      { path: '', component: MainContentComponent }
+      { path: '', component: MainContentComponent },
+      { path: 'add-product', canActivate: [RoleGuardService], data: { expectedRole: 'admin' }, component: AddProductComponent }
     ]
   },
-  { path: 'add-product', canActivate: [RoleGuardService], data: { expectedRole: 'admin' }, component: AddProductComponent },
   { path: '**', redirectTo: '' }
 ];
 
@@ -47,6 +48,7 @@ const routes: Routes = [
     MainContentComponent,
     SidenavComponent,
     AddProductComponent,
-    ShoppingCartSidenavComponent]
+    ShoppingCartSidenavComponent,
+    ProductDetailComponent]
 })
 export class HoevewinkelModule { }
