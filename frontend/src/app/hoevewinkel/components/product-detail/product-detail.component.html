@@ -7,7 +7,7 @@
       <h5>Afname eenheid: </h5>
       <p>{{product.purchaseUnit}}</p>
       <h5>Eenheidsprijs</h5>
-      <p>{{product.price}}</p>
+      <p>{{product.price | currency:'EUR':true}}</p>
       <h5>Omschrijving</h5>
       <p>{{product.description}}</p>
     </mat-card-content>
