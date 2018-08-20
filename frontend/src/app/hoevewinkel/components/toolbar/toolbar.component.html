@@ -4,4 +4,5 @@
       </button>
   <span><a [routerLink]="['/hoevewinkel']">Hoevewinkel</a></span>
   <a *ngIf="isAdmin()" href="#" [routerLink]="['/hoevewinkel/add-product']" mat-button>Nieuw product</a>
+  <span class="toolbar-user"><button *ngIf="loggedIn" href="#" (click)="logout()" mat-button>Afmelden</button></span>
 </mat-toolbar>

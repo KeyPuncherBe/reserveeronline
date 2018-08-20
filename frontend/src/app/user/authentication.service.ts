@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class AuthenticationService {
 
   redirectUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     let parsedToken = this.parseJwt(localStorage.getItem(this._tokenKey));
     if (parsedToken) {
       const expires = new Date(parseInt(parsedToken.exp, 10) * 1000) < new Date();
@@ -79,9 +80,13 @@ export class AuthenticationService {
   }
 
   logout() {
+    console.log('calling logout in auth service');
     if (this._user$.getValue()) {
       localStorage.removeItem('currentUser');
-      setTimeout(() => this._user$.next(null));
+      setTimeout(() => {
+        this._user$.next(null);
+        this.router.navigate(['/users/login']);
+      });
     }
   }
 

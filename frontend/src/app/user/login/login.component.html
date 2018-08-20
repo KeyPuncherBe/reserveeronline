@@ -7,12 +7,13 @@
       <form [formGroup]='user' (ngSubmit)='onSubmit()'>
         <mat-form-field class="example-full-width">
           <input matInput type="text" id="username" formControlName='username' placeholder="E-mail">
-        </mat-form-field>
+        </mat-form-field><br>
         <mat-form-field>
           <input id="password" formControlName='password' matInput placeholder="Passwoord" [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        </mat-form-field>
-        <button [disabled]="!user.valid" mat-raised-button color="primary" type='submit'>Login</button>
+        </mat-form-field><br>
+        <button [disabled]="!user.valid" mat-raised-button color="primary" type='submit'>Login</button> of 
+        <a [routerLink]="['/users/register']" mat-button color="primary">Registreer</a>
       </form>
     </mat-card-content>
   </mat-card>

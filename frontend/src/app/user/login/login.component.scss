@@ -7,9 +7,32 @@
     min-height: 100%;
     align-items: center;
     justify-content: center;
+
+    > * {
+        width: 100%;
+    }
+
 }
+
+mat-form-field {
+    width: 100%;
+}
+
+
 
 .login-card {
     margin: 0;
-    max-width: 50%;
+    max-width: 100%;
+
+    @media all and (min-width: 1080px){
+        max-width: 50%;
+    }
+
+    > * {
+        width: 100%;
+
+        > * {
+            width: 100%;
+        }
+    }
 }

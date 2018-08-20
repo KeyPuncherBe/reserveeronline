@@ -18,7 +18,8 @@
             <input id="confirmPassword" formControlName='confirmPassword' matInput placeholder="Bevestig paswoord" type="password">
           </mat-form-field>
         </div>
-        <button [disabled]="!user.valid" mat-raised-button color="primary" type='submit'>Registreer</button>
+        <button [disabled]="!user.valid" mat-raised-button color="primary" type='submit'>Registreer</button> of 
+        <a [routerLink]="['/users/login']" mat-button color="primary">Login</a>
       </form>
     </mat-card-content>
   </mat-card>
